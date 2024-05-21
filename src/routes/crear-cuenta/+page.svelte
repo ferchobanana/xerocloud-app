@@ -40,7 +40,7 @@
                 <li>Conectalo a facebook y google para correr camapañas exitosas</li>
                 <li>Integra un montón de tus herramientas favoritas</li>
                 <li>Impulsalo con poderosas herramientas de SEO</li>
-
+                <li>Mide todo lo que hacen tus usuarios en tu sitio</li>
             </ul>
         </div>
     
