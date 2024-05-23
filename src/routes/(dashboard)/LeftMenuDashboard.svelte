@@ -24,7 +24,6 @@
 
     afterUpdate(() => {
         let navOptions = document.querySelectorAll('.option')
-        console.log(navOptions)
         navOptions.forEach((node) => changeSelectedOption(node))
     })
 
