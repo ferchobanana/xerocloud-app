@@ -21,32 +21,39 @@
 
             <div class="widget" style={`
                                         background-color: ${colors.background_light_color};
-                                        border-radius: ${selectedCorner.container_css_string}
+                                        border-radius: ${selectedCorner.container_css_string};
                                     `}>
                                     
                 <div class="column-1">
-                    <h2 style={`color: ${colors.title_dark_color}`}>Un gran titulo</h2>
-                    <p style={`color: ${colors.text_info_color}`}>
+                    <h2 style={`
+                                color: ${colors.title_dark_color};
+                                font-family: ${selectedFont.css_string};
+                            `}>
+                            Un gran titulo
+                        </h2>
+                    <p style={`color: ${colors.text_info_color}; font-family: ${selectedFont.css_string};`}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et elit in sapien gravida eleifend et a massa. Nam congue ante in turpis maximus pellentesque. In hac habitasse platea dictumst.
                     </p>
                     <button style={`
                                     background-color: ${colors.button_background_color};
                                     color: ${colors.button_font_color};
                                     border-radius: ${selectedCorner.button_css_string};
+                                    font-family: ${selectedFont.css_string};
                                 `}>
                         Soy un botón
                     </button>
                 </div>
 
                 <div class="column-2" style={`background-color: ${colors.background_dark_color}; border-radius: ${selectedCorner.container_css_string}`}>
-                    <h2 style={`color: ${colors.title_light_color}`}>Un subtitulo</h2>
-                    <p style={`color: ${colors.text_light_color}`}>
+                    <h2 style={`color: ${colors.title_light_color}; font-family: ${selectedFont.css_string};`}>Un subtitulo</h2>
+                    <p style={`color: ${colors.text_light_color}; font-family: ${selectedFont.css_string};`}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et elit in sapien gravida eleifend et a massa.
                     </p>
                     <button style={`
                                     border-color: ${colors.button_background_color};
                                     color: ${colors.button_background_color};
                                     border-radius: ${selectedCorner.button_css_string};
+                                    font-family: ${selectedFont.css_string};
                                 `}>
                         Soy otro botón
                     </button>

@@ -15,6 +15,7 @@
         {#each fonts as font}
             <button class="font"
                     class:selected={selectedFont == font}
+                    style={`font-family: ${font.css_string}`}
                     on:click={() => {selectedFont = font}}>
                 {font.name}
             </button>
@@ -45,6 +46,7 @@
     .fonts {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 8px;
     }
     .font {
@@ -53,8 +55,8 @@
         padding: 12px 25px;
         border-radius: 8px;
         font-size: 14px;
-        color: var(--background-dark-color);
         font-weight: 500;
+        color: var(--background-dark-color);
         cursor: pointer;
         transition: all ease .2s;
     }

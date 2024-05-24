@@ -101,16 +101,36 @@
         display: flex;
         flex-direction: column;
         background-color: var(--background-dark-color);
-        padding: 60px 20px;
+        padding: 60px 20px 30px 20px;
+        overflow-y: auto;
     }
+    /* Anchura de la barra de desplazamiento */
+    .left-menu::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Estilo de la barra de desplazamiento */
+    .left-menu::-webkit-scrollbar-track {
+        background-color: var(--background-dark-color);
+    }
+
+    /* Estilo del pulgar de la barra de desplazamiento */
+    ::-webkit-scrollbar-thumb {
+        background-color: #353c49;
+        border-radius: 20px;
+    }
+
+    /* Logo */
     .logo-container {
         width: 100%;
         padding: 0 20px;
-        margin-bottom: 60px;
+        margin-bottom: 20px;
     }
     .logo-container img {
         width: 100%;
     }
+
+    /* Opciones */
     .options-container {
         display: flex;
         flex-direction: column;
@@ -135,10 +155,10 @@
         width: 24px;
         max-height: 28px;
     }
+
+    /* Cerrar sesion */
     .cerrar-sesion {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
+        margin-top: 40px;
         width: 100%;
         display: grid;
         place-items: center;
