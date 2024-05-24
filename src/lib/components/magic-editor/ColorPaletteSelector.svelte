@@ -9,8 +9,8 @@
 
 <div class="container">
 
-    <h2>Selecciona tu paleta favorita</h2>
-    <p class="info">Puedes escoger la paleta que más te guste e incluso puedes editarla</p>
+    <h2>Escoge una paleta de colores para comenzar</h2>
+    <!-- <p class="info">Puedes escoger la paleta que más te guste e incluso puedes editarla</p> -->
 
     <div class="palettes-container">
         {#each palettes as palette (palette.name)}
@@ -41,20 +41,19 @@
     /* Texto */
     h2 {
         width: 100%;
-        text-align: center;
+        margin-bottom: 20px;
     }
-    .info {
+    /* .info {
         width: 100%;
-        text-align: center;
         color: var(--font-info-color);
-        margin-bottom: 10px;
-    }
+        margin-bottom: 20px;
+    } */
 
     /* Palettes container */
     .palettes-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     /* Each Palette */
@@ -63,7 +62,7 @@
         flex-direction: column;
         align-items: center;
         gap: 5px;
-        background: #fff;
+        background: #fafafa;
         border: 1px solid var(--border-light-color);
         padding: 15px 30px;
         border-radius: 10px;
@@ -81,6 +80,7 @@
     }
     .colors-container {
         display: flex;
+        /* flex-wrap: wrap; */
         gap: 3px;
     }
     .color {

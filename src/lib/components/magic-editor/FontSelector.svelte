@@ -1,24 +1,23 @@
 <script lang="ts">
-
-    import type { Corner } from "./magic-edition";
     
-    export let corners: Corner[]
-    export let selectedCorner: Corner
+    import type { Font } from "./magic-edition";
+
+    export let fonts: Font[]
+    export let selectedFont: Font
 
 </script>
 
 <div class="container">
-    <h2>Selecciona el tipo de esquinas</h2>
-    <p class="info">Escoge el tipo de esquinas que mas se adapté a tu estilo deseado</p>
+    <h2>Selecciona tu fuente preferida</h2>
+    <p class="info">Escoge la fuente que mas se adapte a tu marca</p>
 
-    <div class="corners">
-        {#each corners as corner}
-            <button 
-                class="corner"
-                class:selected={selectedCorner == corner}
-                on:click={() => { selectedCorner = corner}}>
-
-                { corner.name }
+    <div class="fonts">
+        {#each fonts as font}
+            <button class="font"
+                    class:selected={selectedFont == font}
+                    style={`font-family: ${font.css_string}`}
+                    on:click={() => {selectedFont = font}}>
+                {font.name}
             </button>
         {/each}
     </div>
@@ -29,39 +28,36 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        padding: 30px;
+        margin-bottom: 40px;
     }
     /* Texto */
     h2 {
         width: 100%;
-        text-align: center;
     }
     .info {
         width: 100%;
         color: var(--font-info-color);
-        margin-bottom: 10px;
-        text-align: center;
+        margin-bottom: 20px;
     }
 
-    /* Corners */
-    .corners {
+    /* Fonts */
+    .fonts {
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
         gap: 8px;
     }
-    .corner {
-        background: #fff;
+    .font {
+        background: #f9f9f9;
         border: 1px solid var(--border-light-color);
         padding: 12px 25px;
         border-radius: 8px;
         font-size: 14px;
-        color: var(--background-dark-color);
         font-weight: 500;
+        color: var(--background-dark-color);
         cursor: pointer;
         transition: all ease .2s;
     }
-    .corner:hover {
+    .font:hover {
         box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.15);
     }
     .selected {

@@ -44,7 +44,7 @@
                     </Admin.Select>
                 </div>
 
-                <Admin.Button type="a" href="/sites/create-new-site/magic-edition" padding="10px 30px">
+                <Admin.Button type="a" href="/magic-editor" padding="10px 30px">
                     Crear nuevo sitio web
                 </Admin.Button>
             </form>

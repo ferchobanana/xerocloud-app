@@ -69,8 +69,6 @@
 
     .widget-container {
         width: 100%;
-        max-width: 1200px;
-        margin: auto;
     }
     .widget-wrapper {
         padding: 40px 60px;
