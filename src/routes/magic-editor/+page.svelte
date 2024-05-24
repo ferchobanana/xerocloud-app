@@ -235,11 +235,11 @@
         padding:40px;
     }
     h1 {
-        font-size: 50px;
+        font-size: 40px;
     }
     .descripcion {
         width: 100%;
-        font-size: 18px;
+        font-size: 16px;
         text-align: justify;
         color: var(--font-info-color);
     }

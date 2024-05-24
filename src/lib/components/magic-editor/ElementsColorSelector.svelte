@@ -4,13 +4,13 @@
 
 <div class="color-selector">
 
-    <h2>Puedes editar los colores individualmente</h2>
-    <p class="info">Puedes editarlos o dejar los colores por defecto de la paleta.</p>
+    <h2>Color de elementos</h2>
+    <p class="info">Editalos o dejalos por defecto.</p>
 
     <div class="colores">
 
         <div class="color">
-            <p>Color de titulos</p>
+            <p>Titulos</p>
             <input type="color">
         </div>
 
@@ -23,7 +23,6 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        margin-bottom: 40px;
     }
     
     /* Texto */

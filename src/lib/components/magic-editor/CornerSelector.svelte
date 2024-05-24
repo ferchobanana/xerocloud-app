@@ -8,8 +8,8 @@
 </script>
 
 <div class="container">
-    <h2>Selecciona el tipo de esquinas</h2>
-    <p class="info">Escoge el tipo de esquinas que mas se adapté a tu estilo deseado</p>
+    <h2>Esquinas</h2>
+    <p class="info">Escoge un tipo de esquina</p>
 
     <div class="corners">
         {#each corners as corner}
@@ -29,7 +29,6 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        margin-bottom: 40px;
     }
     /* Texto */
     h2 {

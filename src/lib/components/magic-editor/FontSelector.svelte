@@ -8,8 +8,8 @@
 </script>
 
 <div class="container">
-    <h2>Selecciona tu fuente preferida</h2>
-    <p class="info">Escoge la fuente que mas se adapte a tu marca</p>
+    <h2>Tipografia</h2>
+    <p class="info">Escoge una fuente.</p>
 
     <div class="fonts">
         {#each fonts as font}
@@ -28,7 +28,6 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        margin-bottom: 40px;
     }
     /* Texto */
     h2 {

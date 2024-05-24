@@ -9,7 +9,7 @@
 
 <div class="container">
 
-    <h2>Escoge una paleta de colores para comenzar</h2>
+    <h2>Escoge una paleta de colores</h2>
     <!-- <p class="info">Puedes escoger la paleta que más te guste e incluso puedes editarla</p> -->
 
     <div class="palettes-container">
@@ -36,7 +36,6 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        margin-bottom: 40px;
     }
     /* Texto */
     h2 {
