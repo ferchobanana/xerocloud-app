@@ -1,6 +1,31 @@
 <script lang="ts">
+    import type { ActionData } from "./$types"
+
     import * as Admin from "$lib/components/admin"
     import { enhance } from "$app/forms"
+
+    // export let form: ActionData
+
+    let subdomain: string = ""
+    let category: string = "agencia"
+
+    let subdomain_available: null|boolean
+
+    async function checkSubdmainAvailability() {
+
+        const response = await fetch("/api/check-subdomain", {
+            method: "POST",
+            body: JSON.stringify({ subdomain }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const { available } = await response.json()
+        subdomain_available = available
+
+    }
+
 </script>
 
 <div>
@@ -22,29 +47,42 @@
 
                     <div class="subdomain">
                         <div class="subdomain-input">
-                            <input type="text" id="subdomain" name="subdomain" placeholder="subdominio">
+                            <input type="text"
+                                    id="subdomain"
+                                    name="subdomain"
+                                    placeholder="subdominio"
+                                    bind:value={subdomain}
+                                    on:input={checkSubdmainAvailability}>
+
                             <label for="subdomain">.xeroweb.net</label>
                         </div>
-                        <p class="subdomain-message">Este subdominio ya está en uso, elige otro.</p>
+
+                        <!-- Mensaje de validacion para el subdominio -->
+                        {#if subdomain_available === true}
+                            <p class="subdomain-message" style="color: green">Subdominio disponible</p>
+                        {:else if subdomain_available === false && subdomain_available !== null}
+                            <p class="subdomain-message" style="color: red">Subdominio no disponible</p>
+                        {/if}
                     </div>
                 </div>
 
-                <!-- CATEGORY SITE -->
+                <!-- SITE CATEGORY -->
                 <div class="campo">
                     <Admin.Label 
                         label="Escoge una categoria"
                         labelNote="Podrás cambiar la categoria después." />
                     
-                    <Admin.Select name="categoria" value="">
-                        <option value="">Agencia</option>
-                        <option value="">Despacho</option>
-                        <option value="">Proveedor de servicios</option>
-                        <option value="">Tienda en linea</option>
-                        <option value="">Otro</option>
+                    <Admin.Select name="category" bind:value={category}>
+                        <option value="agencia">Agencia</option>
+                        <option value="despacho">Despacho</option>
+                        <option value="proveedor de servicios">Proveedor de servicios</option>
+                        <option value="tienda en linea">Tienda en linea</option>
+                        <option value="otro">Otro</option>
                     </Admin.Select>
                 </div>
 
-                <Admin.Button type="a" href="/magic-editor" padding="10px 30px">
+                <!-- Button -->
+                <Admin.Button padding="10px 30px">
                     Crear nuevo sitio web
                 </Admin.Button>
             </form>

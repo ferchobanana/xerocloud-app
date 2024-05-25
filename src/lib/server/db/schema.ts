@@ -32,8 +32,14 @@ export const websitesTable = pgTable('websites', {
     userId: text('user_id').notNull().references(() => usersTable.id)
 })
 
+export const subdomainsTable = pgTable('subdomains', {
+    id: serial('id').primaryKey(),
+    subdomain: text('subdomain').notNull().unique(),
+    userId: text('user_id').notNull().references(() => usersTable.id)
+})
+
 export const domainsTable = pgTable('domains', {
     id: serial('id').primaryKey(),
-    domainName: text('domain_name').notNull(),
+    domainName: text('domain_name').notNull().unique(),
     userId: text('user_id').notNull().references(() => usersTable.id)
 })

@@ -9,7 +9,7 @@ import { usersTable } from "$lib/server/db/schema";
 
 export const load = (event) => {
     if(event.locals.user) {
-        // redirect(302, "/")
+        redirect(302, "/")
     }
 
     return {}
