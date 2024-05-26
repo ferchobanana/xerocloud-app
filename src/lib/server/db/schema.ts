@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm"
-import { pgTable, serial, varchar, text, integer, timestamp } from "drizzle-orm/pg-core"
+import { pgTable, serial, varchar, text, integer, timestamp, jsonb } from "drizzle-orm/pg-core"
 
 export const usersTable = pgTable('users', {
     id: text('id').primaryKey(),
@@ -19,27 +19,30 @@ export const sessionsTable = pgTable('sessions', {
     }).notNull()
 })
 
-export const pagesTable = pgTable('pages', {
-    id: serial('id').primaryKey(),
-    pageName: text('page_name'),
-    pageTitle: text('page_title'),
-    websiteId: integer('website_id').references(() => websitesTable.id),
-    html: text('html'),
-})
-
 export const websitesTable = pgTable('websites', {
     id: serial('id').primaryKey(),
-    userId: text('user_id').notNull().references(() => usersTable.id)
+    subdomain: text('subdomain').notNull().unique(),
+    category: text('category').notNull(),
+    userId: text('user_id').notNull().references(() => usersTable.id),
+    createdAt: timestamp('created_at').defaultNow(),
 })
 
-export const subdomainsTable = pgTable('subdomains', {
+export const pagesTable = pgTable('pages', {
     id: serial('id').primaryKey(),
-    subdomain: text('subdomain').notNull().unique(),
-    userId: text('user_id').notNull().references(() => usersTable.id)
+    name: text('name').notNull(),
+    title: text('title').notNull(),
+    slug: text('slug').notNull(),
+    renderedHTML: text('rendered_html'),
+    jsonHTML: jsonb('json_html'),
+    headerHTML: text('header_html'),
+    websiteId: integer('website_id').notNull().references(() => websitesTable.id),
+    createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const domainsTable = pgTable('domains', {
     id: serial('id').primaryKey(),
     domainName: text('domain_name').notNull().unique(),
-    userId: text('user_id').notNull().references(() => usersTable.id)
+    websiteId: integer('website_id').notNull().references(() => websitesTable.id),
+    userId: text('user_id').notNull().notNull().references(() => usersTable.id),
+    createdAt: timestamp('created_at').defaultNow(),
 })

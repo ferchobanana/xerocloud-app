@@ -4,11 +4,12 @@
     export let padding: string = "10px 15px"
     export let fontSize: string = "16px"
     export let fontWeight: string = "500"
+    export let disabled: boolean = false
 </script>
 
 {#if type === "button"}
 
-    <button style={`font-size: ${fontSize};
+    <button {disabled} style={`font-size: ${fontSize};
                 font-weight: ${fontWeight};
                 padding: ${padding};`}>
         <slot />
@@ -32,5 +33,9 @@
         text-decoration: none;
         border: none;
         cursor: pointer;
+    }
+    button:disabled {
+        background-color: #799ece;
+        cursor: auto;
     }
 </style>

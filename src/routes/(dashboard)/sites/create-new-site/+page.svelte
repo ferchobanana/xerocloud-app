@@ -4,15 +4,25 @@
     import * as Admin from "$lib/components/admin"
     import { enhance } from "$app/forms"
 
-    // export let form: ActionData
+    export let form: ActionData
 
+    // Data state
     let subdomain: string = ""
     let category: string = "agencia"
 
+    // For interface deactivation
     let subdomain_available: null|boolean
+    let form_disable: boolean = true
 
-    async function checkSubdmainAvailability() {
+    // For loading spinner
+    let loading = false
 
+    $: if(form?.message) {
+        loading = false
+    }
+
+    // Verificamos la disponibilidad del subdominio
+    async function checkSubdomainAvailability() {
         const response = await fetch("/api/check-subdomain", {
             method: "POST",
             body: JSON.stringify({ subdomain }),
@@ -23,12 +33,16 @@
 
         const { available } = await response.json()
         subdomain_available = available
-
+        form_disable = !available
     }
 
 </script>
 
 <div>
+
+    {#if loading}
+        <Admin.LoadingPage/>
+    {/if}
 
     <Admin.PageHeader 
     title="Crea un nuevo sitio web"
@@ -36,7 +50,7 @@
 
     <div class="site-setup">
         <Admin.Card>
-            <form class="setup-column" method="POST" use:enhance>
+            <form class="setup-column" method="POST" use:enhance on:submit={() => loading = true}>
 
                 <!-- SUBDOMAIN -->
                 <div class="campo">
@@ -52,16 +66,16 @@
                                     name="subdomain"
                                     placeholder="subdominio"
                                     bind:value={subdomain}
-                                    on:input={checkSubdmainAvailability}>
+                                    on:input={checkSubdomainAvailability}>
 
                             <label for="subdomain">.xeroweb.net</label>
                         </div>
 
                         <!-- Mensaje de validacion para el subdominio -->
                         {#if subdomain_available === true}
-                            <p class="subdomain-message" style="color: green">Subdominio disponible</p>
+                            <p class="subdomain-message" style="color: green">Subdominio disponible.</p>
                         {:else if subdomain_available === false && subdomain_available !== null}
-                            <p class="subdomain-message" style="color: red">Subdominio no disponible</p>
+                            <p class="subdomain-message" style="color: red">Subdominio no disponible, elige otro.</p>
                         {/if}
                     </div>
                 </div>
@@ -82,9 +96,11 @@
                 </div>
 
                 <!-- Button -->
-                <Admin.Button padding="10px 30px">
+                <Admin.Button disabled={form_disable} padding="10px 30px">
                     Crear nuevo sitio web
                 </Admin.Button>
+
+                <p class="form-message">{ form?.message ?? "" }</p>
             </form>
         </Admin.Card>
     </div>

@@ -1,0 +1,1 @@
+ALTER TABLE "websites" ADD COLUMN "category" text NOT NULL;

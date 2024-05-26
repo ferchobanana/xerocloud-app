@@ -1,5 +1,5 @@
 {
-  "id": "ef38c56e-2732-4967-b540-781b23423f50",
+  "id": "b52a328b-2b35-43c2-aeec-e1ee72f78a4d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -20,15 +20,41 @@
           "primaryKey": false,
           "notNull": true
         },
+        "website_id": {
+          "name": "website_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "user_id": {
           "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
+        "domains_website_id_websites_id_fk": {
+          "name": "domains_website_id_websites_id_fk",
+          "tableFrom": "domains",
+          "tableTo": "websites",
+          "columnsFrom": [
+            "website_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
         "domains_user_id_users_id_fk": {
           "name": "domains_user_id_users_id_fk",
           "tableFrom": "domains",
@@ -44,7 +70,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "domains_domain_name_unique": {
+          "name": "domains_domain_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "domain_name"
+          ]
+        }
+      }
     },
     "public.pages": {
       "name": "pages",
@@ -60,10 +94,34 @@
           "name": "page_name",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "page_title": {
           "name": "page_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rendered_html": {
+          "name": "rendered_html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "json_html": {
+          "name": "json_html",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "header_html": {
+          "name": "header_html",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -72,13 +130,14 @@
           "name": "website_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "html": {
-          "name": "html",
-          "type": "text",
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {},
@@ -166,7 +225,7 @@
         },
         "password": {
           "name": "password",
-          "type": "varchar(50)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
@@ -207,11 +266,24 @@
           "primaryKey": true,
           "notNull": true
         },
+        "subdomain": {
+          "name": "subdomain",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "user_id": {
           "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {},
@@ -231,7 +303,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "websites_subdomain_unique": {
+          "name": "websites_subdomain_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "subdomain"
+          ]
+        }
+      }
     }
   },
   "enums": {},

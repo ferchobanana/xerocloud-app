@@ -1,7 +1,7 @@
 import type { Actions } from "@sveltejs/kit";
 import { fail, error, redirect } from "@sveltejs/kit"
 import { db } from "$lib/server/db/db"
-import { subdomainsTable } from "$lib/server/db/schema";
+import { websitesTable } from "$lib/server/db/schema";
 
 export const load = (event) => {
     if (!event.locals.user) {
@@ -32,15 +32,16 @@ export const actions = {
 
         try {
 
-            await db.insert(subdomainsTable).values({
+            await db.insert(websitesTable).values({
                 userId: locals.user.id,
-                subdomain: subdomain,
+                subdomain,
+                category,
             })
 
         }
 
         catch {
-            return fail(400, {message: "No se pudo crear el sitio. Intenta nuevamente."})
+            return fail(400, {message: "No se pudo crear el sitio. Intenta de nuevo."})
         }
 
         redirect(302, "/magic-editor")

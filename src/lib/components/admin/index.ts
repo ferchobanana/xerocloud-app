@@ -5,6 +5,7 @@ import TextInput from "./TextInput.svelte";
 import Select from "./Select.svelte";
 import TextArea from "./TextArea.svelte";
 import Label from "./Label.svelte";
+import LoadingPage from "./LoadingPage.svelte";
 
 export {
     PageHeader,
@@ -13,5 +14,6 @@ export {
     TextInput,
     Select,
     TextArea,
-    Label
+    Label,
+    LoadingPage,
 }

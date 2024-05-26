@@ -1,6 +1,6 @@
-import { json, error } from '@sveltejs/kit'
+import { json, error, fail } from '@sveltejs/kit'
 import { db } from "$lib/server/db/db"
-import { subdomainsTable } from '$lib/server/db/schema.js'
+import { websitesTable } from '$lib/server/db/schema.js'
 import { eq } from 'drizzle-orm'
 
 export async function POST({ request, locals }) {
@@ -11,9 +11,13 @@ export async function POST({ request, locals }) {
 
     const { subdomain } = await request.json()
 
+    if(subdomain.length == 0) {
+        return json({ available: null })
+    }
+
     const results = await db.select()
-                            .from(subdomainsTable)
-                            .where(eq(subdomainsTable.subdomain, subdomain))
+                            .from(websitesTable)
+                            .where(eq(websitesTable.subdomain, subdomain))
 
     if(results.length > 0) {
         return json({ available: false })
