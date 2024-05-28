@@ -61,6 +61,11 @@
             <p>Productos</p>
         </a>
 
+        <a href="/chatbots" class="option">
+            <img class="option-icon" src={Visits} alt="">
+            <p>Chatbots</p>
+        </a>
+
         <a href="/visits" class="option">
             <img class="option-icon" src={Visits} alt="">
             <p>Visitas</p>

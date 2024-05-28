@@ -46,3 +46,12 @@ export const domainsTable = pgTable('domains', {
     userId: text('user_id').notNull().notNull().references(() => usersTable.id),
     createdAt: timestamp('created_at').defaultNow(),
 })
+
+export const themesTable = pgTable('themes', {
+    id: serial('id').primaryKey(),
+    colorsPalette: jsonb('colors_palette').notNull(),
+    elementsColor: jsonb('elements_color').notNull(),
+    font: jsonb('font').notNull(),
+    corners: text('corners').notNull(),
+    websiteId: integer('website_id').notNull().references(() => websitesTable.id)
+})
